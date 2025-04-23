@@ -13,8 +13,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   void initState() {
-    super.initState(); 
+    super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +47,21 @@ class _RegisterPageState extends State<RegisterPage> {
                   return null;
                 },
               ),
-
-
+              ElevatedButton(onPressed: () {}, child: Text('Register')),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                  //Navigator.pop(context);
+                  //Navigator.push(context,
+                  //MaterialPageRoute(builder: (context) => const LoginPage()),
+                  //);
+                },
+                child: Text('Sudah punya akun? Login Sekarang!'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
