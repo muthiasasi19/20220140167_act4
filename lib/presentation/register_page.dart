@@ -51,15 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   return null;
                 },
               ),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // Jika form valid, bisa lanjut ke halaman lain
-                    Navigator.pushReplacementNamed(context, '/home');
-                  }
-                },
-                child: Text('Register'),
-              ),
+              ElevatedButton(onPressed: () {}, child: Text('Register')),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
