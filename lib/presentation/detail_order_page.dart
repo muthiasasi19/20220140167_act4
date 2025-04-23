@@ -40,7 +40,7 @@ class DetailOrderPage extends StatelessWidget {
                   (route) => false,
                 );
               },
-              child: Text('Finih Order'),
+              child: Text('Finish Order'),
             ),
           ],
         ),

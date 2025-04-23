@@ -11,6 +11,9 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  // GlobalKey untuk Form validation
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -20,6 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
+        key: _formKey, // Set FormKey untuk validasi
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -47,14 +51,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   return null;
                 },
               ),
-              ElevatedButton(onPressed: () {}, child: Text('Register')),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Jika form valid, bisa lanjut ke halaman lain
+                    Navigator.pushReplacementNamed(context, '/home');
+                  }
+                },
+                child: Text('Register'),
+              ),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
-                  //Navigator.pop(context);
-                  //Navigator.push(context,
-                  //MaterialPageRoute(builder: (context) => const LoginPage()),
-                  //);
                 },
                 child: Text('Sudah punya akun? Login Sekarang!'),
               ),

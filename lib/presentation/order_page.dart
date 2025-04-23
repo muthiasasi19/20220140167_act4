@@ -15,6 +15,9 @@ class _OrderPageState extends State<OrderPage> {
   final TextEditingController jumlahMinumanController = TextEditingController();
   int totalHarga = 0;
 
+  // Menambahkan GlobalKey untuk Form validation
+  final _formKey = GlobalKey<FormState>();
+
   void calculateTotalPrice() {
     int jumlahMakanan = int.tryParse(jumlahMakananController.text) ?? 0;
     int jumlahMinuman = int.tryParse(jumlahMinumanController.text) ?? 0;
@@ -26,10 +29,10 @@ class _OrderPageState extends State<OrderPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(title: Text('Order Page')),
       body: Form(
+        key: _formKey, // Menggunakan FormKey untuk validasi
         child: Column(
           spacing: 16,
           children: [
@@ -53,7 +56,6 @@ class _OrderPageState extends State<OrderPage> {
                 return null;
               },
             ),
-
             TextFormField(
               controller: jumlahMakananController,
               decoration: const InputDecoration(labelText: 'Food QTY Order'),
@@ -64,7 +66,6 @@ class _OrderPageState extends State<OrderPage> {
                 return null;
               },
             ),
-
             TextFormField(
               controller: jumlahMinumanController,
               decoration: const InputDecoration(labelText: 'Drink QTY Order'),
@@ -77,6 +78,7 @@ class _OrderPageState extends State<OrderPage> {
             ),
             ElevatedButton(
               onPressed: () {
+                // Memeriksa validasi form sebelum navigasi
                 if (_formKey.currentState!.validate()) {
                   calculateTotalPrice();
                   Navigator.push(

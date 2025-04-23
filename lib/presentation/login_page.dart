@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter tour email';
+                    return 'Please ebter tour email';
                   }
                   return null;
                 },
